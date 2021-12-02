@@ -2,12 +2,12 @@ const { TestHelper } = require("uu_appg01_server-test");
 
 
 const CMD = "list/get";
-afterAll(async () => {
+afterEach(async () => {
     await TestHelper.dropDatabase();
     await TestHelper.teardown();
 });
 
-beforeAll(async () => {
+beforeEach(async () => {
     await TestHelper.setup();
     await TestHelper.initUuSubAppInstance();
     await TestHelper.createUuAppWorkspace();
@@ -72,9 +72,11 @@ describe("Testing the list/get uuCmd...", () => {
       }); 
 
 
-
       test("TodoInstanceDoesNotExist", async () => {
+        let session = await TestHelper.login("Authorities", false, false);
         let filter = `{awid: "${TestHelper.awid}"}`;
+        let restore = `{$set: ${JSON.stringify({ awid: `active` })}}`;
+        await TestHelper.executeDbScript(`db.todosMain.findOneAndUpdate(${filter}, ${restore});`);
         let params = `{$set: ${JSON.stringify({ awid: 77777777777777 })}}`;
         let db = await TestHelper.executeDbScript(`db.todosMain.findOneAndUpdate(${filter}, ${params});`);
         let expectedError = {
@@ -82,9 +84,9 @@ describe("Testing the list/get uuCmd...", () => {
           message: "TodoInstance does not exist."
         };
         try {
-          let com = await TestHelper.executePostCommand("list/get", { name: "Hello list" });
+          let com = await TestHelper.executePostCommand("list/create", { name: "Hello list" }, session);
         } catch (error) {
-         console.log({...error})
+         // console.log({...error})
          // let res = {...error}
 
           // console.log(error.code)
