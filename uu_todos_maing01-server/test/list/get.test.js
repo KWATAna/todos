@@ -34,7 +34,19 @@ describe("Testing the list/get uuCmd...", () => {
         expect(result.data.uuAppErrorMap).toBeDefined();
       });
 
+      test("Invalid dtoIn", async () => {
+        expect.assertions(3);
+        let session = await TestHelper.login("AwidLicenseOwner", false, false);
+        try{
+        let result = await TestHelper.executePostCommand("list/create", {}, session);
+        let fin = await TestHelper.executeGetCommand("list/get", {dr:result.id}, session);
 
+        } catch(e){
+        expect(e.status).toEqual(400);
+        expect(e.message).toEqual("DtoIn is not valid.")
+        expect(e.code).toEqual("uu-todos-main/list/create/invalidDtoIn")
+        }
+      });
 
       test("Test - TodosIsNotInCorrectState", async () => {
         let session = await TestHelper.login("Authorities", false, false);
