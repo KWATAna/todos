@@ -17,6 +17,51 @@ let Calls = {
     let commandUri = Calls.getCommandUri("loadDemoContent");
     return Calls.call("get", commandUri, dtoIn);
   },
+  listList() {
+    let commandUri = Calls.getCommandUri("list/list");
+    return Calls.call("get", commandUri, {});
+  },
+  listGet(dtoIn) {
+    let commandUri = Calls.getCommandUri("list/get");
+    return Calls.call("get", commandUri, dtoIn);
+  },
+  listDelete(dtoIn) {
+    console.log("calls dtoin", dtoIn)
+    let commandUri = Calls.getCommandUri("list/delete");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  listCreate(dtoIn) {
+    let commandUri = Calls.getCommandUri("list/create");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  listUpdate(dtoIn) {
+    let commandUri = Calls.getCommandUri("list/update");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  itemCreate(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/create");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  itemDelete(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/delete");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  itemUpdate(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/update");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  itemSetFinalState(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/setFinalState");
+    return Calls.call("post", commandUri, dtoIn);
+  },
+  itemGet(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/get");
+    return Calls.call("get", commandUri, dtoIn);
+  },
+  itemList(dtoIn) {
+    let commandUri = Calls.getCommandUri("item/list");
+    return Calls.call("get", commandUri, dtoIn);
+  },
 
   loadIdentityProfiles() {
     let commandUri = Calls.getCommandUri("sys/uuAppWorkspace/initUve");

@@ -1,11 +1,9 @@
 "use strict";
 const { Validator } = require("uu_appg01_server").Validation;
-const { DaoFactory, ObjectStoreError } = require("uu_appg01_server").ObjectStore;
+const { DaoFactory } = require("uu_appg01_server").ObjectStore;
 const { ValidationHelper } = require("uu_appg01_server").AppServer;
-const { Profile, AppClientTokenService, UuAppWorkspace, UuAppWorkspaceError } = require("uu_appg01_server").Workspace;
-const { UriBuilder } = require("uu_appg01_server").Uri;
+const { Profile, UuAppWorkspace, UuAppWorkspaceError } = require("uu_appg01_server").Workspace;
 const { LoggerFactory } = require("uu_appg01_server").Logging;
-const { AppClient } = require("uu_appg01_server");
 const Errors = require("../api/errors/todos-main-error.js");
 
 const WARNINGS = {
@@ -19,7 +17,7 @@ const logger = LoggerFactory.get("TodosMainAbl");
 class TodosMainAbl {
   constructor() {
     this.validator = Validator.load();
-    this.dao = DaoFactory.getDao("todosMain")
+    this.dao = DaoFactory.getDao("todosMain");
   }
 
   async init(uri, dtoIn, session) {
@@ -57,19 +55,18 @@ class TodosMainAbl {
       }
     }
 
-    const {uuAppPorfileAuthorities, ...restDtoin} = dtoIn
+    const { uuAppPorfileAuthorities, ...restDtoin } = dtoIn;
     // HDS 3
     const uuObject = {
       ...restDtoin,
       state: "active",
-      awid
-    }
-    let uuToDoInstance = null
-    try{
-      uuToDoInstance = await this.dao.create(uuObject)
-    }catch(e) {
-      throw new Errors.Init.TodoInstanceCreateDaoFailed({uuAppErrorMap}, e)
-
+      awid,
+    };
+    let uuToDoInstance = null;
+    try {
+      uuToDoInstance = await this.dao.create(uuObject);
+    } catch (e) {
+      throw new Errors.Init.TodoInstanceCreateDaoFailed({ uuAppErrorMap }, e);
     }
     // HDS 4 - HDS N
     // TODO Implement according to application needs...
