@@ -29,7 +29,6 @@ export const ListComponent = createVisualComponent({
   render(props) {
     const [active, setActive] = useState(false);
     const [listName, setListName] = useState(props.list?.data?.name);
-    console.log(213, listName);
     const list = props.list;
     const dataListResult = props.dataListResult;
     // @@viewOn:hooks
@@ -49,7 +48,6 @@ export const ListComponent = createVisualComponent({
       const dtoIn = { name: listName, id };
       try {
         dataListResult.handlerMap.update(dtoIn);
-        console.log(dtoIn, "dtoIn");
       } catch (e) {
         console.log(e, "error");
       }

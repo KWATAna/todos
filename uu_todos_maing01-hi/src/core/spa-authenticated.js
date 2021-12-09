@@ -9,7 +9,7 @@ import "uu_plus4u5g01-app";
 import Config from "./config/config";
 import Left from "./left";
 import Bottom from "./bottom";
-import List from "../routes/list";
+import Item from "../routes/item";
 import { ModalManager } from "../routes/list/common/modal-manager";
 
 //@@viewOff:imports
@@ -24,13 +24,12 @@ const About = UU5.Common.Component.lazy(() => import("../routes/about"));
 const InitAppWorkspace = UU5.Common.Component.lazy(() => import("../routes/init-app-workspace"));
 const ControlPanel = UU5.Common.Component.lazy(() => import("../routes/control-panel"));
 
-const DEFAULT_USE_CASE = "list";
+const DEFAULT_USE_CASE = "item";
 const ROUTES = {
   "": DEFAULT_USE_CASE,
   // home: { component: <Home /> },
   about: { component: <About /> },
-  list: { component: <List /> },
-  fust: { component: <List /> },
+  item: { component: <Item /> },
 
   "sys/uuAppWorkspace/initUve": { component: <InitAppWorkspace /> },
   controlPanel: { component: <ControlPanel /> },

@@ -36,15 +36,7 @@ export const Left = createVisualComponent({
         id: list?.data.id,
         href: `list&listId=${list.data.id}`,
 
-        content: (
-          // <div>
-          //   <UU5.Bricks.Lsi lsi={Lsi.left(list?.data.name)} />
-          //   <UU5.Bricks.Button>
-          //     <UU5.Bricks.Icon icon="fa-magic" />
-          //   </UU5.Bricks.Button>
-          // </div>
-          <ListComponent key={list?.data.id} list={list} dataListResult={dataListResult} />
-        ),
+        content: <ListComponent key={list?.data.id} list={list} dataListResult={dataListResult} />,
       }));
     }
 
@@ -70,12 +62,8 @@ export const Left = createVisualComponent({
                   aboutItems={[{ content: <UU5.Bricks.Lsi lsi={Lsi.left.about} />, href: "about" }]}
                   helpHref={null}
                 >
-                  <Plus4U5.App.MenuTree
-                    borderBottom
-                    // NOTE Item "id" equals to useCase so that item gets automatically selected when route changes (see spa-autheticated.js).
-                    items={parseList(dataListResult)}
-                  />
-                  <ListCreate/>
+                  <Plus4U5.App.MenuTree borderBottom items={parseList(dataListResult)} />
+                  <ListCreate />
                 </Plus4U5.App.Left>
               </DataListStateResolver>
             );
