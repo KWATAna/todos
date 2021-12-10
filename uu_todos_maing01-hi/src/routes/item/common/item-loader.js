@@ -26,8 +26,14 @@ export const ItemLoader = createComponent({
     const dataItemResult = useDataList({
       handlerMap: {
         load: Calls.itemList,
+        loadItems: Calls.itemList,
+        create: Calls.itemCreate,
       },
-      itemHandlerMap: {},
+      itemHandlerMap: {
+        delete: Calls.itemDelete,
+        setfinalstate: Calls.itemSetFinalState,
+        update: Calls.itemUpdate,
+      },
     });
     return <ItemContext.Provider value={dataItemResult}>{props.children}</ItemContext.Provider>;
   },

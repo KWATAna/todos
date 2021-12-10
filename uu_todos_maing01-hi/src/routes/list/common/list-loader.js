@@ -32,7 +32,6 @@ export const ListLoader = createComponent({
       },
       itemHandlerMap: {},
     });
-    console.log("dataListResult", dataListResult);
     return <ListContext.Provider value={dataListResult}>{props.children}</ListContext.Provider>;
   },
   //@@viewOff:render

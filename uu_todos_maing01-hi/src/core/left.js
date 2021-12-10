@@ -34,7 +34,7 @@ export const Left = createVisualComponent({
     function parseList(dataListResult) {
       return dataListResult?.data?.map((list) => ({
         id: list?.data.id,
-        href: `list&listId=${list.data.id}`,
+        href: `item?listId=${list.data.id}`,
 
         content: <ListComponent key={list?.data.id} list={list} dataListResult={dataListResult} />,
       }));

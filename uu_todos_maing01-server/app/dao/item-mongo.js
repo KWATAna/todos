@@ -41,11 +41,11 @@ class ItemMongo extends UuObjectDao {
     return await super.deleteOne(filter);
   }
 
-  async listByListIdAndState(uuObject){
+  async listByListIdAndState(uuObject) {
     let filter = {
       awid: uuObject.awid,
       listId: uuObject.listId,
-      state: uuObject.state
+      state: uuObject.state,
     };
     return await super.find(filter);
   }
@@ -56,25 +56,23 @@ class ItemMongo extends UuObjectDao {
       state: uuObject.state,
     };
     return await super.find(filter);
-
   }
 
-  async list(uuObject){
-    let filter = {
-      awid: uuObject.awid
-    }
-    return await super.find(filter)
-  }
-
-  async deleteManyByListId(uuObject){
+  async list(uuObject) {
     let filter = {
       awid: uuObject.awid,
-      listId: uuObject.id
-    }
-    return await super.deleteMany(filter)
-
+      listId: uuObject.listId,
+    };
+    return await super.find(filter);
   }
- 
+
+  async deleteManyByListId(uuObject) {
+    let filter = {
+      awid: uuObject.awid,
+      listId: uuObject.id,
+    };
+    return await super.deleteMany(filter);
+  }
 }
 
 module.exports = ItemMongo;

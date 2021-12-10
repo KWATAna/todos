@@ -4,6 +4,7 @@ import { createVisualComponent, useState } from "uu5g04-hooks";
 import Config from "../../config/config";
 import Css from "./list-component.css";
 import Lsi from "../../../config/lsi";
+import { useContextModal } from "../common/modal-manager";
 
 //@@viewOff:imports
 
@@ -31,6 +32,8 @@ export const ListComponent = createVisualComponent({
     const [listName, setListName] = useState(props.list?.data?.name);
     const list = props.list;
     const dataListResult = props.dataListResult;
+    const { getConfirmRef } = useContextModal();
+
     // @@viewOn:hooks
     //@@viewOff:hooks
     //@@viewOn:private

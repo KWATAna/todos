@@ -32,7 +32,7 @@ export const ListCreate = createVisualComponent({
   render(props) {
     // @@viewOn:hooks
     const [open, close, showAlert] = useContextModal();
-    const {handlerMap} = useList();
+    const { handlerMap } = useList();
 
     //@@viewOff:hooks
     //@@viewOn:private

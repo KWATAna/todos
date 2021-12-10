@@ -1,5 +1,4 @@
 //@@viewOn:imports
-import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import { createVisualComponent } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
@@ -7,6 +6,8 @@ import Config from "./config/config.js";
 import ItemLoader from "./item/common/item-loader.js";
 import ItemContext from "./item/context/item-context.js";
 import DataListStateResolver from "./list/common/data-list-state-resolver.js";
+import { ModalManager } from "./list/common/modal-manager.js";
+import ItemList from "./item/item-list.js";
 
 //@@viewOff:imports
 
@@ -31,19 +32,23 @@ export const Item = createVisualComponent({
 
     //@@viewOn:interface
     //@@viewOff:interface
+    let params = props?.params?.listId;
 
     //@@viewOn:render
-    const attrs = UU5.Common.VisualComponent.getAttrs(props);
     return (
-      <ItemLoader>
-        <ItemContext.Consumer>
-          {(dataItemResult) => {
-            return <DataListStateResolver dataList={dataItemResult}>
-              <div>{JSON.stringify(dataItemResult)}</div>
-            </DataListStateResolver>;
-          }}
-        </ItemContext.Consumer>
-      </ItemLoader>
+      <ModalManager>
+        <ItemLoader>
+          <ItemContext.Consumer>
+            {(dataItemResult) => {
+              return (
+                <DataListStateResolver dataList={dataItemResult}>
+                  <ItemList params={params}></ItemList>
+                </DataListStateResolver>
+              );
+            }}
+          </ItemContext.Consumer>
+        </ItemLoader>
+      </ModalManager>
     );
     //@@viewOff:render
   },

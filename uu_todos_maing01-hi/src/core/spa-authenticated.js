@@ -54,7 +54,11 @@ export const SpaAuthenticated = createVisualComponent({
 
     //@@viewOn:interface
     //@@viewOff:interface
-
+    /* ТУТ ДЕЛАЕМ СТЕЙТ
+     В СТЕЙТЕ АЙДИ ЛИСТА
+     
+    
+*/
     //@@viewOn:render
     return (
       <ModalManager>
