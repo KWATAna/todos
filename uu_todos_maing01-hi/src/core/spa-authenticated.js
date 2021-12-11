@@ -10,7 +10,7 @@ import Config from "./config/config";
 import Left from "./left";
 import Bottom from "./bottom";
 import Item from "../routes/item";
-import { ModalManager } from "../routes/list/common/modal-manager";
+import { ModalManager } from "../common/modal-manager";
 
 //@@viewOff:imports
 

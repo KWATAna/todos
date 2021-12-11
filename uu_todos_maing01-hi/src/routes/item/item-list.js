@@ -29,7 +29,7 @@ export const ItemList = createVisualComponent({
     //@@viewOff:private
 
     const [show, setShow] = useState(true);
-    const { handlerMap } = useItem();
+    const { data, handlerMap } = useItem();
     let listId = props.params;
     //@@viewOn:interface
     //@@viewOff:interface
@@ -51,7 +51,7 @@ export const ItemList = createVisualComponent({
     return (
       <>
         <ItemTiles listId={listId}></ItemTiles>
-        <UU5.Bricks.Button onClick={() => filterThings()} content={show?"hide":"show"} />
+        {data.length > 0 ? <UU5.Bricks.Button onClick={() => filterThings()} content={show ? "hide" : "show"} /> : null}
       </>
     );
     //@@viewOff:render

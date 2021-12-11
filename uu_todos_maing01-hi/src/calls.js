@@ -26,7 +26,7 @@ let Calls = {
     return Calls.call("get", commandUri, dtoIn);
   },
   listDelete(dtoIn) {
-    console.log("calls dtoin", dtoIn)
+    console.log("calls dtoin", dtoIn);
     let commandUri = Calls.getCommandUri("list/delete");
     return Calls.call("post", commandUri, dtoIn);
   },

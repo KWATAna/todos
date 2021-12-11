@@ -62,9 +62,13 @@ export const ItemBlock = createVisualComponent({
       };
     }
 
-    function setFinalState(value) {
+    async function setFinalState(value) {
       if (value) {
-        handlerMap.setfinalstate({ state: "completed" });
+        try {
+          await handlerMap.setfinalstate({ state: "completed" });
+        } catch (e) {
+          console.log(e, "error while deleting todo item");
+        }
         setState(true);
       }
     }
@@ -78,11 +82,16 @@ export const ItemBlock = createVisualComponent({
 
     return currentNestingLevel ? (
       <div>
-        <UU5.Bricks.Card colorSchema="deep-orange">
-          <UU5.Forms.Checkbox value={state} onChange={(opt) => setFinalState(opt.value)} />
+        <UU5.Bricks.Card colorSchema={state ? "deep-orange" : "orange"}>
           <div className={Css.header()}>
+            <UU5.Forms.Checkbox
+              label="completed"
+              labelPosition="right"
+              value={state}
+              onChange={(opt) => setFinalState(opt.value)}
+            />
             {!update ? (
-              <UU5.Bricks.Text content={item?.data?.text} />
+              <UU5.Bricks.Text className={state ? Css.text() : null} content={item?.data?.text} />
             ) : (
               <UU5.Forms.Text onChange={(opt) => setItemName(opt.value)} value={itemName} size="s" />
             )}

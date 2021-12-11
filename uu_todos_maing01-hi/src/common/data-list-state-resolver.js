@@ -11,7 +11,7 @@ import UU5 from "uu5g04";
 import { createComponent } from "uu5g04-hooks";
 import "uu_plus4u5g01-bricks";
 
-import Config from "../../config/config";
+import Config from "../config/config";
 import DataPending from "./data-pending.js";
 import DataError from "./data-error";
 import Lsi from "./error-lsi";

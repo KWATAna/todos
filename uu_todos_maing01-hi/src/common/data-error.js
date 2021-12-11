@@ -11,7 +11,7 @@ import UU5 from "uu5g04";
 import { createComponent } from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-bricks";
-import Config from "../../config/config";
+import Config from "../config/config";
 import Lsi from "./error-lsi";
 //@@viewOff:imports
 

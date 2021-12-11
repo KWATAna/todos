@@ -11,7 +11,7 @@ import UU5 from "uu5g04";
 import "uu5g04-bricks";
 import { createVisualComponent } from "uu5g04-hooks";
 
-import Config from "../../config/config";
+import Config from "../config/config";
 //@@viewOff:imports
 
 //@@viewOn:css

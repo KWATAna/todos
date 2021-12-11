@@ -6,7 +6,7 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
 import { createComponent, useRef, useContext } from "uu5g04-hooks";
-import Config from "../../config/config";
+import Config from "../config/config";
 //@@viewOff:imports
 
 const ContextModalStore = UU5.Common.Context.create();

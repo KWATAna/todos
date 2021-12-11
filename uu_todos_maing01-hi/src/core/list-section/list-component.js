@@ -3,8 +3,8 @@ import UU5 from "uu5g04";
 import { createVisualComponent, useState } from "uu5g04-hooks";
 import Config from "../../config/config";
 import Css from "./list-component.css";
-import Lsi from "../../../config/lsi";
-import { useContextModal } from "../common/modal-manager";
+import Lsi from "../../config/lsi";
+import { useContextModal } from "../../common/modal-manager";
 
 //@@viewOff:imports
 
@@ -31,26 +31,47 @@ export const ListComponent = createVisualComponent({
     const [active, setActive] = useState(false);
     const [listName, setListName] = useState(props.list?.data?.name);
     const list = props.list;
-    const dataListResult = props.dataListResult;
-    const { getConfirmRef } = useContextModal();
+    const { handlerMap } = list;
+    const [, , , getConfirmRef] = useContextModal();
+    const [forceDel, setForceDel] = useState(false);
 
     // @@viewOn:hooks
     //@@viewOff:hooks
     //@@viewOn:private
+    function handleOpenConfirmModal(id) {
+      return getConfirmRef().open({
+        onRefuse: () => console.log("confirmed"),
+        onConfirm: () => deleteList(id),
+        header: "Cookies",
+        content: <UU5.Bricks.P>Are you sure you want to delete this TODO LIST.</UU5.Bricks.P>,
+        confirmButtonProps: { content: "Delete", colorSchema: "danger" },
+        refuseButtonProps: { content: "Cancel", colorSchema: "green" },
+        confirmButtonLeft: true,
+      });
+    }
+
     function deleteList(id) {
-      const dtoIn = { forceDelete: true, id };
+      const dtoIn = { forceDelete: true };
 
       try {
-        dataListResult.handlerMap.delete(dtoIn);
+        if (forceDel) {
+          handlerMap.delete(dtoIn);
+          UU5.Environment.setRoute({
+            url: { useCase: "home" },
+          });
+        } else {
+          handlerMap.delete();
+          setActive(!active);
+        }
       } catch (e) {
-        console.log(e, "error");
+        console.log(e, "delete list error");
       }
     }
 
     function updateList(id) {
-      const dtoIn = { name: listName, id };
+      const dtoIn = { name: listName };
       try {
-        dataListResult.handlerMap.update(dtoIn);
+        handlerMap.update(dtoIn);
       } catch (e) {
         console.log(e, "error");
       }
@@ -62,7 +83,7 @@ export const ListComponent = createVisualComponent({
     //@@viewOff:interface
 
     //@@viewOn:render
-
+    //
     return (
       <div className={Css.listStyle()}>
         {!active ? (
@@ -75,9 +96,9 @@ export const ListComponent = createVisualComponent({
             <UU5.Bricks.Icon icon="fa-magic" />
           </UU5.Bricks.Button>
         ) : (
-          <div className={Css.listStyle()}>
+          <div>
             <UU5.Bricks.ButtonGroup size="s">
-              <UU5.Bricks.Button onClick={() => deleteList(list?.data?.id)}>
+              <UU5.Bricks.Button onClick={handleOpenConfirmModal}>
                 <UU5.Bricks.Icon icon="fa-trash" />
               </UU5.Bricks.Button>
               <UU5.Bricks.Button
@@ -89,6 +110,7 @@ export const ListComponent = createVisualComponent({
                 <UU5.Bricks.Icon icon="fa-check" />
               </UU5.Bricks.Button>
             </UU5.Bricks.ButtonGroup>
+            <UU5.Forms.Checkbox label="force delete" value={forceDel} onChange={(opt) => setForceDel(opt.value)} />
           </div>
         )}
       </div>

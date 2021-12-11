@@ -1,12 +1,11 @@
 //@@viewOn:imports
 import UU5 from "uu5g04";
-import { createVisualComponent, useState } from "uu5g04-hooks";
+import { createVisualComponent } from "uu5g04-hooks";
 import Config from "../../config/config";
 import Css from "./list-component.css";
-import { useContextModal } from "../common/modal-manager";
-import { useList } from "../context/use-list";
-import { ListCreateControls, ListCreateHeader, ListCreateForm } from "../create-form/list-create-form";
-import Lsi from "../../../config/lsi";
+import { useContextModal } from "../../common/modal-manager";
+import { useList } from "./context/use-list";
+import { ListCreateControls, ListCreateHeader, ListCreateForm } from "./create-form/list-create-form";
 
 //@@viewOff:imports
 

@@ -4,13 +4,14 @@ import "uu5g04-bricks";
 import { createVisualComponent } from "uu5g04-hooks";
 import Plus4U5 from "uu_plus4u5g01";
 import "uu_plus4u5g01-app";
-import ListLoader from "../routes/list/common/list-loader.js";
-import ListContext from "../routes/list/context/list-context.js";
-import DataListStateResolver from "../routes/list/common/data-list-state-resolver.js";
+import ListLoader from "./list-section/list-loader.js";
+import ListContext from "./list-section/context/list-context";
+import DataListStateResolver from "../common/data-list-state-resolver.js";
 import Config from "./config/config.js";
 import Lsi from "../config/lsi.js";
-import ListComponent from "../routes/list/list-section/list-component.js";
-import ListCreate from "../routes/list/list-section/list-create.js";
+import ListComponent from "./list-section/list-component";
+import ListCreate from "./list-section/list-create.js";
+
 //@@viewOff:imports
 
 const STATICS = {
@@ -30,13 +31,13 @@ export const Left = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+
     //@@viewOff:private
     function parseList(dataListResult) {
-      return dataListResult?.data?.map((list) => ({
-        id: list?.data.id,
-        href: `item?listId=${list.data.id}`,
-
-        content: <ListComponent key={list?.data.id} list={list} dataListResult={dataListResult} />,
+      return dataListResult?.data?.map((item) => ({
+        id: item?.data.id,
+        href: `item?listId=${item.data.id}`,
+        content: <ListComponent key={item?.data.id} list={item} dataListResult={dataListResult} />,
       }));
     }
 
@@ -57,7 +58,6 @@ export const Left = createVisualComponent({
                     backgroundColorTo: UU5.Environment.colors.blue.c500,
                     title: "uuTodos",
                     companyLogo: Plus4U5.Environment.basePath + "assets/img/unicorn-logo.svg",
-                    generation: "1",
                   }}
                   aboutItems={[{ content: <UU5.Bricks.Lsi lsi={Lsi.left.about} />, href: "about" }]}
                   helpHref={null}
