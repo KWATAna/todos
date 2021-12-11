@@ -50,8 +50,8 @@ export const ListCreate = createVisualComponent({
     //@@viewOn:render
 
     return (
-      <div>
-        <UU5.Bricks.Button onClick={() => openCreateModal()} className={Css.btnWrapper()}>
+      <div className={Css.btnStyle()}>
+        <UU5.Bricks.Button onClick={() => openCreateModal()} className={Css.btnStyle()}>
           Create New List
         </UU5.Bricks.Button>
       </div>

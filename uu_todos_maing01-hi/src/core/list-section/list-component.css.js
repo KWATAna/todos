@@ -4,10 +4,15 @@ const listStyle = () => Config.Css.css`
 display: flex;
 justify-content: space-between;
 `;
-const btnWrapper = () => Config.Css.css`
-margin: 0 auto;
-`;
+
+const btnStyle = () => Config.Css.css`
+text-align: center;`;
+
+const divStyle = () => Config.Css.css`
+display: flex;`;
+
 export default {
   listStyle,
-  btnWrapper,
+  btnStyle,
+  divStyle,
 };
