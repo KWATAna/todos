@@ -51,7 +51,9 @@ export const ItemList = createVisualComponent({
     return (
       <>
         <ItemTiles listId={listId}></ItemTiles>
-        {data.length > 0 ? <UU5.Bricks.Button onClick={() => filterThings()} content={show ? "hide" : "show"} /> : null}
+        {data.length > 0 ? (
+          <UU5.Bricks.Button onClick={() => filterThings()} content={show ? "hide completed" : "show completed"} />
+        ) : null}
       </>
     );
     //@@viewOff:render
