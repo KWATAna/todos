@@ -97,7 +97,7 @@ export const ItemBlock = createVisualComponent({
             )}
             <div>
               {!update ? (
-                <UU5.Bricks.Button onClick={() => setUpdate(true)}>
+                <UU5.Bricks.Button disabled={state} onClick={() => setUpdate(true)}>
                   <UU5.Bricks.Icon icon="fa-magic" />
                 </UU5.Bricks.Button>
               ) : (
